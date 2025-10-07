@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Photo Gallery for My Love</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="gif-bg"></div> 
+
+    <div class="birthday-card">
+        <h2>Our Favorite Memories 📸</h2>
+        <p class="subtitle">Swipe through some of the best moments we've shared!</p>
+
+        <div class="photo-gallery">
+            <img src="1.jpeg" alt="A fun memory 1">
+            <img src="2.jpeg" alt="A special date night">
+            <img src="3.jpeg" alt="Her beautiful smile">
+        </div>
+
+        <nav class="back-nav">
+            <a href="index.html" class="nav-button">🏠 Back to Home</a>
+        </nav>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const confettiContainer = document.createElement('div');
+            confettiContainer.classList.add('confetti');
+            document.body.appendChild(confettiContainer);
+
+            const colors = ['#ff69b4', '#ffd700', '#00bcd4', '#f08080']; 
+
+            for (let i = 0; i < 50; i++) { 
+                const piece = document.createElement('div');
+                piece.classList.add('confetti-piece');
+                piece.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                piece.style.left = `${Math.random() * 100}vw`; 
+                piece.style.animationDelay = `${Math.random() * 10}s`; 
+                piece.style.animationDuration = `${7 + Math.random() * 8}s`; 
+                
+                const size = `${5 + Math.random() * 10}px`;
+                piece.style.width = size;
+                piece.style.height = size;
+
+                if (Math.random() < 0.5) { 
+                    piece.style.borderRadius = '2px'; 
+                } else {
+                    piece.style.borderRadius = '50%';
+                }
+
+                confettiContainer.appendChild(piece);
+            }
+        });
+    </script>
+</body>
+</html>

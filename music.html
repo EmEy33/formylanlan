@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Birthday Video Surprise</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="gif-bg"></div> 
+
+    <div class="birthday-card">
+        <h2>🎥 A Special Video Just for You </h2>
+        <p class="subtitle">Press play to watch our moment!</p>
+
+        <div class="music-player">
+            <video controls loop autoplay muted width="100%" height="auto">
+                <source src="bday-video.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <p style="margin-top: 10px; color: #ff69b4; font-size: 0.9em;">(The video starts muted. Tap the speaker icon to hear the sound!)</p>
+        </div>
+
+        <nav class="back-nav">
+            <a href="index.html" class="nav-button">🏠 Back to Home</a>
+        </nav>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const confettiContainer = document.createElement('div');
+            confettiContainer.classList.add('confetti');
+            document.body.appendChild(confettiContainer);
+
+            const colors = ['#ff69b4', '#ffd700', '#00bcd4', '#f08080']; 
+
+            for (let i = 0; i < 50; i++) { 
+                const piece = document.createElement('div');
+                piece.classList.add('confetti-piece');
+                piece.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                piece.style.left = `${Math.random() * 100}vw`; 
+                piece.style.animationDelay = `${Math.random() * 10}s`; 
+                piece.style.animationDuration = `${7 + Math.random() * 8}s`; 
+                
+                const size = `${5 + Math.random() * 10}px`;
+                piece.style.width = size;
+                piece.style.height = size;
+
+                if (Math.random() < 0.5) { 
+                    piece.style.borderRadius = '2px'; 
+                } else {
+                    piece.style.borderRadius = '50%';
+                }
+
+                confettiContainer.appendChild(piece);
+            }
+        });
+    </script>
+</body>
+</html>

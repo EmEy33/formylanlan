@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>A Message Just for You</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="gif-bg"></div> 
+
+    <div class="birthday-card message-page">
+        <h2>💌 A Letter to My Queen 👑</h2>
+        
+        <div class="message-content">
+            <p>To my Shielan<3,</p>
+            <p>Happy Birthday to the most amazing girl I know. Seriously, i've been sitting here thinking about what to write, and I just keep thinking about how lucky I am.</p>
+            <p>I don't think I tell you enough how much I actually love you, even though sinasabi ko sa'yo araw-araw is parang ang liit pa ng word na yun para i-describe yung nararamdaman ko towards sa'yo. Sana hindi ka nagsasawa na palagi kong sinasabi sa'yo na mahal na mahal kita.</p>
+            <p>I truly believe you are the strongest person I know. The way you handle everything life throws at you, from personal struggles to family matters—with grace and resilience is super incredible. It makes me so proud to be by your side. You are a constant source of inspiration, and the crazy part is, you don't even have to try. You inspire me every single day, literally, because your photo is my wallpaper—that picture of you in your graduation gown, beaming with your medals around your neck. It's a daily reminder for me of what an incredible woman you are.</p>
+            <p>I'm not just celebrating you today because it's your birthday. I'm celebrating you because you exist and my world is infinitely better because i have you. I'm so excited for our future and all the stupid, fun, and amazing things we're going to do together~ (alam ko na may gagawin tayong kababalaghan in the future BWHAHAHAHA)</p>
+            <p>My only wish is that you have a day as incredible as you are. You deserve every bit of happiness coming your way baby ko</p>
+        </div>
+
+        <p class="signature-name">Yours,Alweh</p>
+
+        <nav class="back-nav">
+            <a href="index.html" class="nav-button">🏠 Back to Home</a>
+        </nav>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const confettiContainer = document.createElement('div');
+            confettiContainer.classList.add('confetti');
+            document.body.appendChild(confettiContainer);
+
+            const colors = ['#ff69b4', '#ffd700', '#00bcd4', '#f08080']; 
+
+            for (let i = 0; i < 50; i++) { 
+                const piece = document.createElement('div');
+                piece.classList.add('confetti-piece');
+                piece.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                piece.style.left = `${Math.random() * 100}vw`; 
+                piece.style.animationDelay = `${Math.random() * 10}s`; 
+                piece.style.animationDuration = `${7 + Math.random() * 8}s`; 
+                
+                const size = `${5 + Math.random() * 10}px`;
+                piece.style.width = size;
+                piece.style.height = size;
+
+                if (Math.random() < 0.5) { 
+                    piece.style.borderRadius = '2px'; 
+                } else {
+                    piece.style.borderRadius = '50%';
+                }
+
+                confettiContainer.appendChild(piece);
+            }
+        });
+    </script>
+    </body>
+</html>

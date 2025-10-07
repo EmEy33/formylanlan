@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday, LOVE! 🎉</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="gif-bg"></div> 
+    
+    <div class="birthday-card">
+        <h1 id="main-message">Loading Countdown...</h1> 
+        <p class="subtitle" id="sub-message">Get Ready for the Best Day!</p>
+
+        <div class="countdown-box" id="countdown-display" style="display: none;">
+            <span class="days-number" id="days-number">0</span>
+            <span class="days-text">DAY/S LEFT</span>
+        </div>
+        
+        <nav class="surprise-nav" id="surprise-nav" style="display: none;">
+            <a href="gallery.html" class="nav-button">📸 Pictures</a>
+            <a href="message.html" class="nav-button">💌 Special Message</a>
+            <a href="music.html" class="nav-button">🎶 Your Song</a>
+            <a href="greetings.html" class="nav-button">🥳 Friends Greetings</a>
+        </nav>
+        
+        <p class="signature-name">Your Husband Alweh</p>
+    </div>
+
+    <script>
+        // **********************************************
+        // 1. SET THE TARGET DATE HERE! (Year, Month Index, Day)
+        //    FIXED FOR TESTING: Set to today (Oct 6, 2025) so confetti starts immediately.
+        const targetDate = new Date(2025, 9, 8); 
+        const girlfriendName = "Love"; 
+        // **********************************************
+
+        const oneDay = 1000 * 60 * 60 * 24;
+
+        // --- CONVENIENCE FUNCTION 1: Confetti Definition ---
+        function startConfetti() {
+            const confettiContainer = document.createElement('div');
+            confettiContainer.classList.add('confetti');
+            document.body.appendChild(confettiContainer);
+
+            // You must have the .confetti and .confetti-piece CSS styles defined!
+            const colors = ['#ff69b4', '#ffd700', '#00bcd4', '#f08080']; 
+
+            for (let i = 0; i < 50; i++) { 
+                const piece = document.createElement('div');
+                piece.classList.add('confetti-piece');
+                piece.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                piece.style.left = `${Math.random() * 100}vw`; 
+                piece.style.animationDelay = `${Math.random() * 10}s`; 
+                piece.style.animationDuration = `${7 + Math.random() * 8}s`; 
+                
+                const size = `${5 + Math.random() * 10}px`;
+                piece.style.width = size;
+                piece.style.height = size;
+
+                if (Math.random() < 0.5) { 
+                    piece.style.borderRadius = '2px'; 
+                } else {
+                    piece.style.borderRadius = '50%';
+                }
+
+                confettiContainer.appendChild(piece);
+            }
+        }
+        
+        // --- CONVENIENCE FUNCTION 2: Countdown & Caller (Calls startConfetti) ---
+        function updateCountdown() {
+            const now = new Date().getTime();
+            let nextBirthday = new Date(targetDate);
+            
+            // Adjust to the current year if the birthday has passed this year
+            while (nextBirthday.getTime() < now) {
+                nextBirthday.setFullYear(nextBirthday.getFullYear() + 1);
+            }
+
+            let distance = nextBirthday.getTime() - now;
+            
+            const messageElement = document.getElementById('main-message');
+            const subMessageElement = document.getElementById('sub-message');
+            const countdownBox = document.getElementById('countdown-display');
+            const daysNumberElement = document.getElementById('days-number');
+            const navElement = document.getElementById('surprise-nav');
+
+            const today = new Date();
+            const isBirthday = (nextBirthday.getDate() === today.getDate() && nextBirthday.getMonth() === today.getMonth());
+            
+            if (isBirthday) {
+                // IT IS THE BIRTHDAY!
+                messageElement.innerText = `HAPPY BIRTHDAY, MY LOVE!`;
+                subMessageElement.innerText = "Today is your day! May it be filled with joy. Ready to explore your surprise? ❤️";
+                countdownBox.style.display = 'none';
+
+                // ACTION: SHOW NAVIGATION AND START CONFETTI
+                navElement.style.display = 'flex'; 
+                startConfetti(); // <-- Function is now guaranteed to be defined here!
+            } else if (distance > 0) {
+                // COUNTDOWN IS RUNNING
+                const daysLeft = Math.ceil(distance / oneDay);
+                
+                messageElement.innerText = "Get Ready for the Best Day!";
+                subMessageElement.innerText = `The countdown is on for your special day, ${girlfriendName}!`;
+                
+                daysNumberElement.innerText = daysLeft;
+                countdownBox.style.display = 'inline-block'; 
+                
+                // ACTION: HIDE NAVIGATION
+                navElement.style.display = 'none';
+            }
+        }
+
+        // EXECUTION
+        updateCountdown(); 
+        setInterval(updateCountdown, 1000); 
+    </script>
+    </body>
+</html>
